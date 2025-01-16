@@ -16,7 +16,7 @@ const IsActiveLink = (currentRoute) => {return route.path == currentRoute}
          <ul class="flex text-black flex-col gap-2">
           <li v-for="link in ['Dashboard','Contact','About']" 
           @click="navigateTo(link)" :key="link" 
-          :class="`${IsActiveLink(`/${link}`) ? 'bg-white' : 'text-white bg-gray-700'} text-lg w-full p-2 text-center  rounded-md cursor-pointer`">
+          :class="`${IsActiveLink(`/${link}`) ? 'bg-white' : 'text-white bg-gray-700'} font-semibold text-lg w-full p-2 text-center  rounded-md cursor-pointer`">
             {{ link }}
           </li>
          </ul>

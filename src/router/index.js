@@ -32,11 +32,11 @@ const router = createRouter({
       path: "/",
       name: "",
       component: AuthLayout,
-      redirect: "dashboard",
+      redirect: "Dashboard",
       children: [
         {
-          path: "dashboard",
-          name: "dashboard",
+          path: "Dashboard",
+          name: "Dashboard",
           component: Dashboard
         },
         {
