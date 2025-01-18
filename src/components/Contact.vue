@@ -5,5 +5,5 @@ import ContentContainer from "./content-container.vue"
 <template>
     <ContentContainer>
         CONTACT
-    </ContentContainer>
+    </ContentContainer> 
 </template>

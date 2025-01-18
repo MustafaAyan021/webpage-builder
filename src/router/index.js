@@ -41,12 +41,12 @@ const router = createRouter({
         },
         {
           path: "contact",
-          name: "contact",
+          name: "Contact",
           component: Contact
         },
         {
           path: "about",
-          name: "about",
+          name: "About",
           component: About
         },
       ],
