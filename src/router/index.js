@@ -9,6 +9,8 @@ import Login from '@/views/Login.vue'
 import UserData from "@/userData.json"
 import TwoFa from '@/views/2fa.vue'
 import ConfirmationCode from "@/confirmationCode.json"
+import Settings from '@/views/Settings.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -27,7 +29,6 @@ const router = createRouter({
       name: "2fa",
       component: TwoFa,
     },
-
     {
       path: "/",
       name: "",
@@ -49,8 +50,13 @@ const router = createRouter({
           name: "About",
           component: About
         },
+        {
+          path: "/settings",
+          name: "Settings",
+          component:Settings,
+        },
       ],
-    }
+    },
   ],
 })
 
@@ -62,7 +68,7 @@ router.beforeEach((to, from, next) => {
     if (!userData) {
       next({ path: '/login' })
       return
-    } 
+    }
 
     if (userData === JSON.stringify(UserData) && confirmationCode === JSON.stringify(ConfirmationCode)) {
       next({ path: '/' })
