@@ -10,7 +10,7 @@ import UserData from "@/userData.json"
 import TwoFa from '@/views/2fa.vue'
 import ConfirmationCode from "@/confirmationCode.json"
 import Settings from '@/views/Settings.vue'
-
+import ThemeSettings from '@/components/ThemeSettings.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -53,7 +53,15 @@ const router = createRouter({
         {
           path: "/settings",
           name: "Settings",
-          component:Settings,
+          component: Settings,
+          redirect: "/theme-settings",
+          children: [
+            {
+              path: "/theme-settings",
+              name: "theme-settings",
+              component: ThemeSettings
+            }
+          ]
         },
       ],
     },
