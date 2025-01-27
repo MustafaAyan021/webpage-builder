@@ -17,32 +17,52 @@ const colorThemeButtons = [
     {
         id: 1,
         themeColor: colorThemes.gray,
-        backgroundColor: colorThemes.gray.backgroundTwo,
+        backgroundColor: colorThemes.gray.backgroundSecondary,
     },
     {
         id: 2,
         themeColor: colorThemes.salmon,
-        backgroundColor: colorThemes.salmon.background,
+        backgroundColor: colorThemes.salmon.backgroundSecondary,
     },
     {
         id: 3,
         themeColor: colorThemes.teal,
-        backgroundColor: colorThemes.teal.background,
+        backgroundColor: colorThemes.teal.backgroundSecondary,
     },
     {
         id: 4,
         themeColor: colorThemes.purple,
-        backgroundColor: colorThemes.purple.backgroundTwo,
+        backgroundColor: colorThemes.purple.backgroundSecondary,
     },
     {
         id: 5,
         themeColor: colorThemes.orange,
-        backgroundColor: colorThemes.orange.backgroundTwo,
+        backgroundColor: colorThemes.orange.backgroundSecondary,
     },
     {
         id: 6,          
         themeColor: colorThemes.pink,
-        backgroundColor: colorThemes.pink.backgroundTwo,
+        backgroundColor: colorThemes.pink.backgroundSecondary,
+    },
+    {
+        id: 7,          
+        themeColor: colorThemes.green,
+        backgroundColor: colorThemes.green.backgroundSecondary,
+    },
+    {
+        id: 8,          
+        themeColor: colorThemes.blue,
+        backgroundColor: colorThemes.blue.backgroundSecondary,
+    },
+    {
+        id: 9,          
+        themeColor: colorThemes.yellow,
+        backgroundColor: colorThemes.yellow.backgroundSecondary,
+    },
+    {
+        id: 10,          
+        themeColor: colorThemes.navy,
+        backgroundColor: colorThemes.navy.backgroundSecondary,
     },
 ]
 const toggleCard = (card) => {
@@ -54,7 +74,7 @@ const toggleCard = (card) => {
 <template>
     <section class="flex flex-col gap-2">
         <div v-for="card in cards" :key="card.id"
-        :class="`${currentTheme.backgroundTwo} ${currentTheme.text} p-3  rounded-md transition-all duration-300 ease-out`">
+        :class="`${currentTheme.backgroundSecondary} ${currentTheme.text} p-3  rounded-md transition-all duration-300 ease-out`">
         <button class="w-full h-full" @click="toggleCard(card)">
             <div :class="`flex justify-between items-center`">
                 <h1 class="text-sm font-semibold">{{ card.name }}</h1>

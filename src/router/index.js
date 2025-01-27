@@ -11,6 +11,8 @@ import TwoFa from '@/views/2fa.vue'
 import ConfirmationCode from "@/confirmationCode.json"
 import Settings from '@/views/Settings.vue'
 import ThemeSettings from '@/components/ThemeSettings.vue'
+import PageBuilder from '@/views/PageBuilder.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -36,19 +38,24 @@ const router = createRouter({
       redirect: "Dashboard",
       children: [
         {
-          path: "Dashboard",
+          path: "/dashboard",
           name: "Dashboard",
           component: Dashboard
         },
         {
-          path: "contact",
+          path: "/about",
+          name: "About",
+          component: About
+        },
+        {
+          path: "/contact",
           name: "Contact",
           component: Contact
         },
         {
-          path: "about",
-          name: "About",
-          component: About
+          path: "/page-builder",
+          name: "Page Builder",
+          component: PageBuilder,
         },
         {
           path: "/settings",
@@ -58,7 +65,7 @@ const router = createRouter({
           children: [
             {
               path: "/theme-settings",
-              name: "theme-settings",
+              name: "Theme Settings",
               component: ThemeSettings
             }
           ]
