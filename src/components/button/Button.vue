@@ -1,17 +1,27 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, computed, reactive } from 'vue';
 import { useThemeStore } from '@/stores/ThemeSettings';
 import { storeToRefs } from 'pinia';
+
 const themeStore = useThemeStore();
 const { currentTheme } = storeToRefs(themeStore);
 
 const props = defineProps({
-    type:'',
-})
+    type: String,
+    variant: String,
+});
+
+const variants = reactive({
+    solid: `${currentTheme.value.button} ${currentTheme.value.text} p-2 rounded-lg font-semibold`,
+    outline: `${currentTheme.value.text} ${currentTheme.value.borderColor} p-2 rounded-lg font-semibold`,
+    warning: `bg-yellow-400 border border-black text-black p-2 rounded-lg font-semibold`,
+});
+
+const buttonClass = computed(() => variants[props.variant] || variants.solid)
 </script>
 
 <template>
-     <button :type="props.type" :class="`${currentTheme.button} ${currentTheme.text} p-2 rounded-lg font-semibold`">
-        <slot>Button Text</slot>
-     </button>
+    <button :type="props.type" :class="buttonClass">
+        <slot>Button</slot>
+    </button>
 </template>

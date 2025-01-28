@@ -1,4 +1,5 @@
 <script setup>
+import Button from '@/components/button/Button.vue';
 import Container from '@/components/container.vue';
 import Input from '@/components/input/input.vue';
 import Textarea from '@/components/input/textarea.vue';
