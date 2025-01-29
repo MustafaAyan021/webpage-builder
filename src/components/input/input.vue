@@ -15,6 +15,6 @@ const props = defineProps({
 <template>
     <div class="flex flex-col">
         <label for="input" :class="`${currentTheme.text} ml-2 font-semibold text-sm mb-1`">{{ props.label }}</label>
-        <input id="input" :type="props.type" @input="$emit('update:modelValue', $event.target.value)" :accept="props.accept" :class="`${classes} ${currentTheme.text} border border-gray-600 bg-transparent text-sm rounded-lg w-full p-2.5`">
+        <input id="input" :type="props.type" @input="$emit('update:modelValue', $event.target.value)" :accept="props.accept" :class="`${classes} ${currentTheme.text} border border-gray-600 bg-transparent text-sm rounded-lg w-full p-2.5`" required>
     </div>
 </template> 
