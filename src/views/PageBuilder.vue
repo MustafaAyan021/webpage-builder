@@ -48,9 +48,9 @@ const handelItemSubmit = (e) => {
       <Button type="submit" variant="outline">Add</Button>
     </form>
     <div v-for="(item,index) in items"
-      :class="`${currentTheme.backgroundSecondary} ${currentTheme.text} itemAside flex justify-between py-2 rounded-md px-3`">
-      <h1 class="font-semibold items-center">{{ item.heading }}</h1>
-      <Button @click="items.splice(index,1)" variant="danger" classes="p-1 px-2 text-sm rounded-md">Delete</Button>
+      :class="`${currentTheme.backgroundSecondary} ${currentTheme.text} itemAside flex justify-between items-center py-2 rounded-md px-3`">
+      <h1 class="font-semibold items-center">{{index + 1 + ". "}} {{ item.heading.substring(0,10) + "..." }}</h1>
+      <Button @click="items.splice(index,1)" variant="danger" classes="py-1 px-2 text-sm rounded-md">Delete</Button>
     </div>
   </aside>
   <Container classes="mr-64">

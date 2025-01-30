@@ -16,7 +16,7 @@ const variants = reactive({
     solid: `${currentTheme.value.button} ${currentTheme.value.text} p-2 rounded-lg font-semibold`,
     outline: `${currentTheme.value.text} ${currentTheme.value.borderColor} p-2 rounded-lg font-semibold`,
     warning: `bg-yellow-400 border border-black text-black p-2 rounded-lg font-semibold`,
-    danger: `bg-red-600 border border-black text-black p-2 rounded-lg font-semibold`,
+    danger: `bg-red-600 border border-black text-white p-2 rounded-lg font-semi     bold`,
 });
 
 const buttonClass = computed(() => variants[props.variant] || variants.solid)
