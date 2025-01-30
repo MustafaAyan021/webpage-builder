@@ -15,7 +15,7 @@ const state = reactive({
 
 const image = ref('')
 const handelImageSubmit = (e) => {
-  const file = e.target.files?.[0]
+  const file = e.target.files[0]
   image.value = file ? URL.createObjectURL(file) : '';
 }
 
@@ -24,11 +24,12 @@ const items = reactive([
 ])
 const handelItemSubmit = (e) => {
   const newItem = {
-    heading: e.srcElement.input.value,
-    paragraph: e.srcElement.textarea.value,
+    heading: e.target.input.value,
+    paragraph: e.target.textarea.value,
   }
-  e.srcElement.input.value = ''
-  e.srcElement.textarea.value = ''
+  e.target.input.value = ''
+  e.target.textarea.value = ''
+  console.log(e)
   items.push(newItem)
 }
 </script>
