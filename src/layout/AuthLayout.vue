@@ -37,7 +37,7 @@ const links = [
   },
   {
     path: "/page-builder",
-    name: "Page Builder",
+    name: "PageBuilder",
     icon: PlusCircleIcon,
   },
 ]
@@ -61,13 +61,13 @@ const toggleSidebar = () => {
             :class="`${currentTheme.text} size-10 ml-1 p-2 rounded-full cursor-pointer `" />
         </button>
       </div>
-      <ul :class="`${currentTheme.text} flex flex-col justify-between h-full`">
+      <ul :class="`${currentTheme.text} flex flex-col justify-between h-full gap-2`">
         <div class="flex flex-col gap-2">
           <button v-for="link in links" @click="navigateTo(link.path)" :key="link"
             :class="`
-              ${IsActiveLink(link.path) ? currentTheme.activeButton : currentTheme.button} 
+              ${IsActiveLink(link.path) ? currentTheme.activeButton: currentTheme.button} 
               ${currentTheme.text} w-full p-2 text-center rounded-md cursor-pointer text-sm transition-all duration-300 ease-out`">
-            <div :class="`${sidebarState ? 'flex gap-4 items-center' : 'justify-center'}`">
+            <div :class="`${sidebarState ? 'flex gap-4 items-center' : 'justify-center'} ${IsActiveLink(link.path) ? 'font-semibold': ''}`">
               <component :is="link.icon" class='size-6 ml-1' />
               <p v-show="sidebarState" class='text-md'>{{ link.name }}</p>
             </div>
@@ -77,7 +77,7 @@ const toggleSidebar = () => {
               ${IsActiveLink(`/theme-settings`) ? currentTheme.activeButton : currentTheme.button} 
             ${currentTheme.text} w-full p-2 text-center rounded-md cursor-pointer text-sm`">
           <div
-            :class="`${sidebarState ? 'flex gap-4 items-center' : 'justify-center'} transition-all duration-300 ease-out`">
+            :class="`${sidebarState ? 'flex gap-4 items-center' : 'justify-center'} ${IsActiveLink('/theme-settings') ? 'font-semibold': ''} transition-all duration-300 ease-out`">
             <AdjustmentsVerticalIcon class='size-6 ml-1' />
             <p v-show="sidebarState" class='text-md'>Settings</p>
           </div>

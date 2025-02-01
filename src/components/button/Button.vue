@@ -9,6 +9,12 @@ const { currentTheme } = storeToRefs(themeStore);
 const props = defineProps({
     type: String,
     variant: String,
+    appendIcon:Object,
+    prependIcon:Object,
+    iconSize:{
+        type:String,
+        default:'size-5',
+    },
     classes:String,
 });
 
@@ -16,7 +22,7 @@ const variants = reactive({
     solid: `${currentTheme.value.button} ${currentTheme.value.text} p-2 rounded-lg font-semibold`,
     outline: `${currentTheme.value.text} ${currentTheme.value.borderColor} p-2 rounded-lg font-semibold`,
     warning: `bg-yellow-400 border border-black text-black p-2 rounded-lg font-semibold`,
-    danger: `bg-red-600 border border-black text-white p-2 rounded-lg font-semi     bold`,
+    danger: `bg-red-600 border border-black text-white p-2 rounded-lg font-semibold`,
 });
 
 const buttonClass = computed(() => variants[props.variant] || variants.solid)
@@ -24,6 +30,8 @@ const buttonClass = computed(() => variants[props.variant] || variants.solid)
 
 <template>
     <button :type="props.type" :class="`${buttonClass} ${classes}`">
-        <slot>Button</slot>
+        <div class="flex items-center justify-center">
+            <component :is="prependIcon" v-if="appendIcon" :class="props.iconSize"/><slot></slot><component :is="appendIcon" v-if="appendIcon" :class="props.iconSize"/>
+        </div>
     </button>
 </template>
