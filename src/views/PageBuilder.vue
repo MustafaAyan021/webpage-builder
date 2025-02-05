@@ -83,16 +83,12 @@ const closeFullScreen = () => {
     </div>
   </aside>
   <Container classes="mr-80 justify-center">
-    <nav :class="`w-full flex items-center justify-end`">
-      <div :class="`flex gap-1 p-1 ${currentTheme.button} rounded-lg shadow-inner`">
-        <Button v-for="btn in responsiveButtons" :key="btn.icon" @click="btn.buttonFunction()" variant="solid"
-          :classes="`${currentTheme.backgroundPrimary} hover:opacity-100 opacity-80 active:scale-95 text-sm rounded-md`"
-          :append-icon="btn.icon"></Button>
-      </div>
-      <div :class="`flex gap-1 border-l ${currentTheme.borderColor} px-2`">
-      </div>
-    </nav>
-    <main :class="`${state.mainContentWidth} border border-gray-200 h-[90%] bg-gray-50 rounded-lg overflow-hidden`">
+    <div :class="`flex gap-1 p-1 ${currentTheme.activeButton} rounded-lg shadow-inner absolute top-1 right-[22rem]`">
+      <Button v-for="btn in responsiveButtons" :key="btn.icon" @click="btn.buttonFunction()" variant="solid"
+        :classes="`${currentTheme.backgroundPrimary} hover:opacity-100 opacity-80 active:scale-95 text-sm rounded-md`"
+        :append-icon="btn.icon"></Button>
+    </div>
+    <main :class="`${state.mainContentWidth} border border-gray-200 h-[100%] bg-gray-50 rounded-lg overflow-hidden`">
       <i :class="`${state.openMainContent ? 'inline-block' : 'hidden'} absolute top-0 right-0 p-4 bg-gray-300 hover:bg-red-500 rounded-full aspect-[1/1] flex items-center m-2 ${currentTheme.text} active:scale-95 active:opacity-70`"
         @click="closeFullScreen">
         <IconX stroke='3' size="24" />
