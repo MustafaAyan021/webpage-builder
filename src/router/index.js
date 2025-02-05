@@ -35,25 +35,25 @@ const router = createRouter({
       path: "/",
       name: "",
       component: AuthLayout,
-      redirect: "Dashboard",
+      redirect: "/dashboard/main",
       children: [
         {
-          path: "/dashboard",
+          path: "/dashboard/main",
           name: "Dashboard",
           component: Dashboard
         },
         {
-          path: "/about",
+          path: "/dashboard/about",
           name: "About",
           component: About
         },
         {
-          path: "/contact",
+          path: "/dashboard/contact",
           name: "Contact",
           component: Contact
         },
         {
-          path: "/page-builder",
+          path: "/dashboard/page-builder",
           name: "Page Builder",
           component: PageBuilder,
         },
@@ -61,10 +61,10 @@ const router = createRouter({
           path: "/settings",
           name: "Settings",
           component: Settings,
-          redirect: "/theme-settings",
+          redirect: "/settings/theme-settings",
           children: [
             {
-              path: "/theme-settings",
+              path: "/settings/theme-settings",
               name: "Theme Settings",
               component: ThemeSettings
             }

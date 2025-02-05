@@ -4,8 +4,10 @@ import ArrowSmallDownIcon from '@heroicons/vue/24/outline/ArrowSmallDownIcon'
 import { storeToRefs } from 'pinia';
 import { useThemeStore } from '@/stores/ThemeSettings';
 const themeStore = useThemeStore();
-const { currentTheme } = storeToRefs(themeStore);
+const { currentTheme } = storeToRefs(themeStore)
 const { colorThemes } = themeStore;
+const setTheme = themeStore.setTheme
+
 const cards = ref([
     {
         id: 1,
@@ -85,11 +87,11 @@ const toggleCard = (card) => {
         <div v-show="card.isToggled"
             class="flex justify-between ml-1 items-center flex-wrap mt-4 transition-all duration-300 ease-out">
             <div class="flex gap-2 ml-1 items-center flex-wrap">
-                <button v-for="item in colorThemeButtons" :key="item.id" @click="currentTheme = item.themeColor"
+                <button v-for="item in colorThemeButtons" :key="item.id" @click="setTheme(item.themeColor)"
                 :class="`${item.backgroundColor} rounded-full border border-gray-700 w-7 h-7`">
                 </button>
             </div>
-            <button @click="currentTheme = colorThemes.gray" :class="`${currentTheme.button} p-2 px-3 text-sm rounded-md transition-all duration-300 ease-out`">Reset</button>
+            <button @click="setTheme(colorThemes.gray)" :class="`${currentTheme.button} p-2 px-3 text-sm rounded-md transition-all duration-300 ease-out`">Reset</button>
         </div>
     </div>
     </section>

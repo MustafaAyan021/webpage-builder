@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onBeforeMount, ref, watchEffect } from "vue";
 import { RouterView } from "vue-router"
 import { RouterLink } from 'vue-router';
 import { useRoute, useRouter } from 'vue-router';
@@ -13,37 +13,36 @@ import { useThemeStore } from '@/stores/ThemeSettings';
 import { storeToRefs } from "pinia";
 const themeStore = useThemeStore()
 const { currentTheme } = storeToRefs(themeStore);
-
-
 const route = useRoute()
 const router = useRouter();
 const { push } = router;
 
 const links = [
   {
-    path: "/dashboard",
+    path: "/dashboard/main",
     name: "Dashboard",
     icon: HomeIcon,
   },
   {
-    path: "/about",
+    path: "/dashboard/about",
     name: "About",
     icon: InformationCircleIcon,
   },
   {
-    path: "/contact",
+    path: "/dashboard/contact",
     name: "Contact",
     icon: PhoneIcon,
   },
   {
-    path: "/page-builder",
+    path: "/dashboard/page-builder",
     name: "PageBuilder",
     icon: PlusCircleIcon,
   },
 ]
 
+onBeforeMount(themeStore.initializeTheme)
 const navigateTo = (name) => (push(name));
-const IsActiveLink = (currentRoute) => { return route.path == currentRoute }
+const IsActiveLink = (currentRoute) => { return route.path.startsWith(currentRoute) }
 const sidebarState = ref(false)
 const toggleSidebar = () => {
   return sidebarState.value = !sidebarState.value
@@ -51,34 +50,34 @@ const toggleSidebar = () => {
 </script>
 
 <template>
-  <main class="flex h-screen justify-center">
+  <main class="flex h-screen">
     <!-- Sidebar -->
     <aside
-      :class="`${sidebarState ? 'absolute left-0 top-0' : 'left-0 w-[6rem]'} ${currentTheme.backgroundPrimary} absolute w-72  flex flex-col h-full px-6 py-4 gap-8 transition-all duration-300 ease-out`">
+      :class="`${sidebarState ? 'w-56 absolute left-0 top-0' : 'left-0 w-20'} ${currentTheme.backgroundPrimary} border-r ${currentTheme.borderColor} absolute  flex flex-col h-full px-4 py-2 gap-8 transition-all duration-300 ease-out`">
       <div class="flex items-center">
         <button>
           <Bars3Icon @click="toggleSidebar()"
-            :class="`${currentTheme.text} size-10 ml-1 p-2 rounded-full cursor-pointer `" />
+            :class="`${currentTheme.text} hover:${currentTheme.button} active:scale-95 active:${currentTheme.activeButton} size-10 ml-1 p-2 rounded-full cursor-pointer `" />
         </button>
       </div>
-      <ul :class="`${currentTheme.text} flex flex-col justify-between h-full gap-2`">
-        <div class="flex flex-col gap-2">
+      <ul :class="`${currentTheme.text} flex flex-col justify-between h-full gap-1`">
+        <div class="flex flex-col gap-1">
           <button v-for="link in links" @click="navigateTo(link.path)" :key="link"
             :class="`
-              ${IsActiveLink(link.path) ? currentTheme.activeButton: currentTheme.button} 
-              ${currentTheme.text} w-full p-2 text-center rounded-md cursor-pointer text-sm transition-all duration-300 ease-out`">
-            <div :class="`${sidebarState ? 'flex gap-4 items-center' : 'justify-center'} ${IsActiveLink(link.path) ? 'font-semibold': ''}`">
-              <component :is="link.icon" class='size-6 ml-1' />
+              ${IsActiveLink(link.path) ? currentTheme.activeButton : currentTheme.button} 
+              ${currentTheme.text} ${currentTheme.hover} active:opacity-70 active:scale-[99%] w-full p-2 text-center rounded-md cursor-pointer text-sm`">
+            <div :class="`${sidebarState ? 'flex gap-4 items-center' : 'flex justify-center'}`">
+              <component :is="link.icon" :class="`size-5`" />
               <p v-show="sidebarState" class='text-md'>{{ link.name }}</p>
             </div>
           </button>
         </div>
         <button @click="navigateTo('/settings')" :class="`
-              ${IsActiveLink(`/theme-settings`) ? currentTheme.activeButton : currentTheme.button} 
+              ${IsActiveLink(`/settings`) ? currentTheme.activeButton : currentTheme.button} 
             ${currentTheme.text} w-full p-2 text-center rounded-md cursor-pointer text-sm`">
           <div
-            :class="`${sidebarState ? 'flex gap-4 items-center' : 'justify-center'} ${IsActiveLink('/theme-settings') ? 'font-semibold': ''} transition-all duration-300 ease-out`">
-            <AdjustmentsVerticalIcon class='size-6 ml-1' />
+            :class="`${sidebarState ? 'flex gap-4 items-center' : ' flex justify-center'} ${IsActiveLink('/theme-settings') ? 'font-semibold': ''} transition-all duration-300 ease-out`">
+            <AdjustmentsVerticalIcon class='size-5' />
             <p v-show="sidebarState" class='text-md'>Settings</p>
           </div>
         </button>
@@ -86,9 +85,9 @@ const toggleSidebar = () => {
     </aside>
     <!-- Main Content  -->
     <div
-      :class="`${sidebarState ? 'ml-72' : 'ml-24'} w-full flex flex-col h-full transition-all duration-300 ease-out`">
+      :class="`${sidebarState ? 'ml-56' : 'ml-20'} w-full flex flex-col h-full transition-all duration-300 ease-out`">
       <nav
-        :class="`${currentTheme.backgroundSecondary} ${currentTheme.text} flex gap-2 items-center p-4 font-bold text-xl h-max transition-all duration-300 ease-out`">
+        :class="`${currentTheme.backgroundSecondary} ${currentTheme.text} border-b ${currentTheme.borderColor} flex gap-2 items-center p-4 font-bold text-xl h-max transition-all duration-300 ease-out`">
         <p class="cursor-pointer text-sm">{{ route.name }}</p>
       </nav>
       <RouterView />
