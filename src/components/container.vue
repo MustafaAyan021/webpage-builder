@@ -12,7 +12,7 @@ defineProps({
 
 <template>
     <main
-        :class="`${currentTheme.backgroundSecondary} text-white h-full p-3 px-6 flex flex-wrap overflow-auto transition-all duration-300 ease-out ${classes}`">
+        :class="`${currentTheme.backgroundSecondary} text-white h-full px-4 py-3 flex flex-wrap overflow-auto rounded-[24px] m-3 transition-all duration-300 ease-out ${classes}`">
         <slot>Content</slot>
     </main>
 </template>

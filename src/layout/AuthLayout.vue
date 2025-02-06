@@ -50,14 +50,14 @@ const toggleSidebar = () => {
 </script>
 
 <template>
-  <main class="flex h-screen">
+  <main class="flex h-screen font-[Arial, Helvetica, sans-serif]">
     <!-- Sidebar -->
     <aside
-      :class="`${sidebarState ? 'w-56 absolute left-0 top-0' : 'left-0 w-20'} ${currentTheme.backgroundPrimary} border-r ${currentTheme.borderColor} absolute  flex flex-col h-full px-4 py-2 gap-8 transition-all duration-300 ease-out`">
+      :class="`${sidebarState ? 'w-56 absolute left-0 top-0' : 'left-0 w-20'} ${currentTheme.backgroundPrimary} absolute  flex flex-col h-full px-4 py-2 gap-8 transition-all duration-200 ease-out`">
       <div class="flex items-center">
         <button>
           <Bars3Icon @click="toggleSidebar()"
-            :class="`${currentTheme.text} hover:${currentTheme.button} active:scale-95 active:${currentTheme.activeButton} size-10 ml-1 p-2 rounded-full cursor-pointer `" />
+            :class="`${currentTheme.text} ${currentTheme.hover} active:scale-95 size-10 ml-1 p-2 rounded-full cursor-pointer `" />
         </button>
       </div>
       <ul :class="`${currentTheme.text} flex flex-col justify-between h-full gap-1`">
@@ -85,9 +85,9 @@ const toggleSidebar = () => {
     </aside>
     <!-- Main Content  -->
     <div
-      :class="`${sidebarState ? 'ml-56' : 'ml-20'} w-full flex flex-col h-full transition-all duration-300 ease-out`">
+      :class="`${sidebarState ? 'ml-56' : 'ml-20'} w-full flex flex-col h-full transition-all duration-200 ease-out ${currentTheme.backgroundPrimary}`">
       <nav
-        :class="`${currentTheme.backgroundSecondary} ${currentTheme.text} border-b ${currentTheme.borderColor} flex gap-2 items-center p-4 font-bold text-xl h-max transition-all duration-300 ease-out`">
+        :class="`${currentTheme.backgroundPrimary} ${currentTheme.text} flex gap-2 items-center p-4 font-bold text-xl h-max transition-all duration-300 ease-out`">
         <p class="cursor-pointer text-sm">{{ route.name }}</p>
       </nav>
       <RouterView />

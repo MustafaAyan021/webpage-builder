@@ -22,9 +22,11 @@ const state = reactive({
 })
 
 const image = ref('')
+const imageName = ref('')
 const handelImageSubmit = (e) => {
   const file = e.target.files[0]
   image.value = file ? URL.createObjectURL(file) : '';
+  imageName.value = file.name
 }
 
 const items = reactive([
@@ -46,7 +48,7 @@ const responsiveButtons = [
   },
   {
     icon: DevicePhoneMobileIcon,
-    buttonFunction: () => (state.mainContentWidth = 'w-[410px]'),
+    buttonFunction: () => (state.mainContentWidth = 'w-[390px]'),
   },
   {
     icon: IconArrowsMaximize,
@@ -65,12 +67,20 @@ const closeFullScreen = () => {
 <template>
   <aside
     :class="`${currentTheme.backgroundPrimary} absolute top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto border-l ${currentTheme.borderColor}`">
-    <h1 :class="`${currentTheme.text} font-bold text-xl ml-1`">Edit Page :</h1>
+    <h1 :class="`${currentTheme.text} font-bold text-lg ml-1`">Edit Page</h1>
     <Input v-model="state.heading" type="text" label="Heading" />
-    <Input @change="handelImageSubmit" type="file" label="Choose Image" accept="image/*" />
+    <div>
+      <Input @change="handelImageSubmit" type="file" label="Choose Image" accept="image/*"
+        :classes="`${imageName ? 'rounded-b-none' : ''}`" />
+      <div :class="`px-3 py-1 border ${currentTheme.borderColor} flex gap-2 border-t-0 w-full rounded-md rounded-t-none`"
+        v-show="imageName">
+        <p :class="`text-sm font-semibold ${currentTheme.text}`">Selected Image : </p>
+        <span :class="`text-sm ${currentTheme.text} font-mono`"> {{ imageName.substring(0,12) + '...' }} </span>
+      </div>
+    </div>
     <Textarea v-model="state.paragraph" label="Paragraph" classes="h-48" />
     <form @submit.prevent="handelItemSubmit" action="" class="flex flex-col gap-1">
-      <h1 :class="`${currentTheme.text} font-bold text-xl ml-1`">Add Items :</h1>
+      <h1 :class="`${currentTheme.text} font-bold text-lg ml-1`">Add Items</h1>
       <Input type="text" label="Heading" required />
       <Textarea label="Paragraph" classes="h-44" required />
       <Button type="submit" variant="solid">Add Item</Button>
@@ -82,13 +92,15 @@ const closeFullScreen = () => {
         :appendIcon="TrashIcon" icon-size="size-5"></Button>
     </div>
   </aside>
-  <Container classes="mr-80 justify-center">
-    <div :class="`flex gap-1 p-1 ${currentTheme.activeButton} rounded-lg shadow-inner absolute top-1 right-[22rem]`">
+  <Container classes="mr-[332px] justify-center">
+    <div
+      :class="`flex gap-1 p-1 ${currentTheme.activeButton} rounded-[12px] shadow-inner absolute top-2 right-[22rem]`">
       <Button v-for="btn in responsiveButtons" :key="btn.icon" @click="btn.buttonFunction()" variant="solid"
-        :classes="`${currentTheme.backgroundPrimary} hover:opacity-100 opacity-80 active:scale-95 text-sm rounded-md`"
+        :classes="`${currentTheme.backgroundPrimary} hover:opacity-100 opacity-90 active:scale-95 text-sm rounded-md`"
         :append-icon="btn.icon"></Button>
     </div>
-    <main :class="`${state.mainContentWidth} border border-gray-200 h-[100%] bg-gray-50 rounded-lg overflow-hidden`">
+    <main
+      :class="`${state.mainContentWidth} shadow border border-gray-200 h-[100%] bg-gray-50 rounded-[16px] overflow-hidden`">
       <i :class="`${state.openMainContent ? 'inline-block' : 'hidden'} absolute top-0 right-0 p-4 bg-gray-300 hover:bg-red-500 rounded-full aspect-[1/1] flex items-center m-2 ${currentTheme.text} active:scale-95 active:opacity-70`"
         @click="closeFullScreen">
         <IconX stroke='3' size="24" />

@@ -8,7 +8,7 @@ export const useThemeStore = defineStore('toggleTheme', {
                 backgroundSecondary: 'bg-gray-100',
                 button: 'bg-gray-100',
                 activeButton: 'bg-gray-200',
-                text: 'text-black',
+                text: 'text-gray-700',
                 borderColor: 'border-gray-300',
                 hover:'hover:bg-gray-200'
             },
@@ -18,7 +18,7 @@ export const useThemeStore = defineStore('toggleTheme', {
                 button: 'bg-[#FF6347]',
                 activeButton: '',
                 text: 'text-black',
-                borderColor: 'border-none',
+                borderColor: 'border-[#FF6347]',
             },
             teal: {
                 backgroundPrimary: 'bg-[#E0F7F7]',
