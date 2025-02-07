@@ -11,7 +11,7 @@ const { currentTheme } = storeToRefs(themeStore);
 const settingsTabs = [
     {
         name: 'Theme',
-        path: '/theme-settings'
+        path: '/settings/theme-settings'
     }
 ]
 
@@ -24,7 +24,7 @@ const navigateTo = (name) => (push(name));
             <aside
                 :class="`${currentTheme.backgroundSecondary} w-64 h-full flex flex-col gap-2 p-6 transition-all duration-300 ease-out`">
                 <button v-for="tab in settingsTabs" @click="navigateTo(tab.path)"
-                    :class="`${currentTheme.button} ${currentTheme.text} list-none text-center px-3 py-2 rounded-md font-semibold text-sm transition-all duration-300 ease-out`">{{
+                    :class="`${currentTheme.activeButton} ${currentTheme.text} list-none text-center px-3 py-2 rounded-md font-semibold text-sm transition-all duration-300 ease-out`">{{
                         tab.name }}</button>
             </aside>
             <main

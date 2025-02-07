@@ -50,7 +50,7 @@ const toggleSidebar = () => {
 </script>
 
 <template>
-  <main class="flex h-screen font-[Arial, Helvetica, sans-serif]">
+  <main class="flex h-screen selection:text-gray-700 selection:bg-gray-200">
     <!-- Sidebar -->
     <aside
       :class="`${sidebarState ? 'w-56 absolute left-0 top-0' : 'left-0 w-20'} ${currentTheme.backgroundPrimary} absolute  flex flex-col h-full px-4 py-2 gap-8 transition-all duration-200 ease-out`">
@@ -93,4 +93,4 @@ const toggleSidebar = () => {
       <RouterView />
     </div>
   </main>
-</template>
+</template>cd vue-assig
