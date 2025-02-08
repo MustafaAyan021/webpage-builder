@@ -12,6 +12,9 @@ import { useThemeStore } from '@/stores/ThemeSettings';
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
 import PageBuilderSidebar from '@/components/PageBuilderSidebar.vue';
+import Heading from '@/components/Heading.vue'
+import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
+import Paragraph from '@/components/Paragraph.vue';
 
 const themeStore = useThemeStore()
 const { currentTheme } = storeToRefs(themeStore)
@@ -21,6 +24,9 @@ const state = reactive({
   mainContentWidth: 'w-full',
   openMainContent: false,
 })
+
+const sidebarStore = usePageBuilderSidebarStore()
+const { sidebarContent } = storeToRefs(sidebarStore)
 
 
 const responsiveButtons = [
@@ -37,6 +43,7 @@ const responsiveButtons = [
     buttonFunction: () => {
       state.mainContentWidth = 'absolute top-0 left-0 w-full h-[100%] rounded-none'
       state.openMainContent = !state.openMainContent
+      sidebarStore.showStructureFunc()
     },
   }
 ]
@@ -56,11 +63,13 @@ const closeFullScreen = () => {
         :append-icon="btn.icon"></Button>
     </div>
     <main
-      :class="`${state.mainContentWidth} shadow border border-gray-200 h-[100%] bg-gray-50 rounded-[16px] overflow-hidden`">
+      :class="`${state.mainContentWidth} shadow border border-gray-200 h-[100%] bg-gray-50 rounded-[16px] py-2 px-4 flex flex-col gap-3 transition-all`">
       <i :class="`${state.openMainContent ? 'inline-block' : 'hidden'} absolute top-0 right-0 p-4 bg-gray-300 hover:bg-red-500 rounded-full aspect-[1/1] flex items-center m-2 ${currentTheme.text} active:scale-95 active:opacity-70`"
         @click="closeFullScreen">
         <IconX stroke='3' size="24" />
       </i>
+      <Heading/>
+      <Paragraph/>
     </main>
   </Container>
 </template>

@@ -1,66 +1,49 @@
 import { defineStore } from "pinia";
 export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore', {
     state: () => ({
-        showAddItem: true,
-        showStructure: false,
-        openHeadingEditing: false,
-        openImageEditing: false,
-        openParagraphEditing: false,
-        openCardEditing: false,
+        sidebarContent: {
+            showAddItem: true,
+            showStructure: false,
+            openHeadingEditing: false,
+            openImageEditing: false,
+            openParagraphEditing: false,
+            openCardEditing: false,
+        }
     }),
     actions: {
+        setAllToFalse() {
+            Object.keys(this.sidebarContent).forEach(key => {
+                this.sidebarContent[key] = false;
+            });
+        },
         showAddItemFunc() {
-            this.showAddItem = !this.showAddItem
-            this.showStructure = false
-            this.openHeadingEditing = false
-            this.openParagraphEditing = false
-            this.openImageEditing = false
-            this.openCardEditing = false
+            this.setAllToFalse()
+            this.sidebarContent.showAddItem = !this.sidebarContent.showAddItem
         },
 
         showStructureFunc() {
-            this.showStructure = !this.showStructure
-            this.showAddItem = false
-            this.openHeadingEditing = false
-            this.openParagraphEditing = false
-            this.openImageEditing = false
-            this.openCardEditing = false
+            this.setAllToFalse()
+            this.sidebarContent.showStructure = !this.sidebarContent.showStructure
         },
 
         openHeadingEditingFunc() {
-            this.openHeadingEditing = !this.openHeadingEditing
-            this.showAddItem = false
-            this.showStructure = false
-            this.openParagraphEditing = false
-            this.openImageEditing = false
-            this.openCardEditing = false
+            this.setAllToFalse()
+            this.sidebarContent.openHeadingEditing = !this.sidebarContent.openHeadingEditing
         },
 
         openParagraphEditingFunc() {
-            this.openParagraphEditing = !this.openParagraphEditing
-            this.showAddItem = false
-            this.showStructure = false
-            this.openHeadingEditing = false
-            this.openImageEditing = false
-            this.openCardEditing = false
+            this.setAllToFalse()
+            this.sidebarContent.openParagraphEditing = !this.sidebarContent.openParagraphEditing
         },
 
         openImageEditingFunc() {
-            this.openImageEditing = !this.openImageEditing
-            this.showAddItem = false
-            this.showStructure = false
-            this.openHeadingEditing = false
-            this.openParagraphEditing = false
-            this.openCardEditing = false
+            this.setAllToFalse()
+            this.sidebarContent.openImageEditing = !this.sidebarContent.openImageEditing
         },
 
         openCardEditingFunc() {
-            this.openCardEditing = !this.openCardEditing
-            this.showAddItem = false
-            this.showStructure = false
-            this.openHeadingEditing = false
-            this.openParagraphEditing = false
-            this.openImageEditing = false
+            this.setAllToFalse()
+            this.sidebarContent.openCardEditing = !this.sidebarContent.openCardEditing
         },
     },
     getters: {},

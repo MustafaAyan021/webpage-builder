@@ -12,11 +12,9 @@ const themeStore = useThemeStore()
 const { currentTheme } = storeToRefs(themeStore)
 
 const sidebarStore = usePageBuilderSidebarStore()
-const { showAddItem } = storeToRefs(sidebarStore)
-const { showStructure } = storeToRefs(sidebarStore)
-const { openHeadingEditing } = storeToRefs(sidebarStore)
-const { openParagraphEditing } = storeToRefs(sidebarStore)
-const { openImageEditing } = storeToRefs(sidebarStore)
+const { sidebarContent } = storeToRefs(sidebarStore)
+
+
 const state = reactive({
     heading: '',
     paragraph: '',
@@ -45,14 +43,20 @@ const handelItemSubmit = (e) => {
 </script>
 
 <template>
-    <aside class="`${currentTheme.backgroundPrimary} absolute top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto border-l ${currentTheme.borderColor}`">
+    <aside
+        :class="`${currentTheme.backgroundPrimary} absolute top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto border-l ${currentTheme.borderColor}`">
         <h1 :class="`${currentTheme.text} font-bold text-lg ml-1`">Edit Page</h1>
-        <Input type="text" label="Heading" />
-        <div>
+        <div v-show="sidebarContent.openHeadingEditing" id="heading-editing">
+            <Input type="text" label="Heading" />
+        </div>
+        <div id="image-editing" v-show="sidebarContent.openImageEditing">
             <Input :atChange="handelImageSubmit" type="file" :fileName="imageName" label="Choose Image" accept="image/*"
                 :classes="``" />
         </div>
-        <Textarea v-model="state.paragraph" label="Paragraph" classes="h-48" />
+        <div id="paragrahh-editing" v-show="sidebarContent.openParagraphEditing">
+            <Textarea v-model="state.paragraph" label="Paragraph" classes="h-48" />
+        </div>
+       <div id="card-editing" v-show="sidebarContent.openCardEditing">
         <form @submit.prevent="handelItemSubmit" action="" class="flex flex-col gap-1">
             <h1 :class="`${currentTheme.text} font-bold text-lg ml-1`">Add Items</h1>
             <Input type="text" label="Heading" />
@@ -66,5 +70,6 @@ const handelItemSubmit = (e) => {
             <Button @click="items.splice(index, 1)" variant="danger" classes="py-1 px-2 text-sm rounded-md"
                 :appendIcon="TrashIcon" icon-size="size-5"></Button>
         </div>
+       </div>
     </aside>
 </template>
