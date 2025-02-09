@@ -1,0 +1,27 @@
+<script setup>
+import { storeToRefs } from 'pinia';
+import Card from './Card.vue';
+import { usePageBuilderContent } from '@/stores/PageBuilderContent';
+import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
+
+const contentStore = usePageBuilderContent()
+const { mainContentWidth } = storeToRefs(contentStore)
+
+const sidebarStore = usePageBuilderSidebarStore()
+const { sidebarContent } = storeToRefs(sidebarStore)
+</script>
+
+<template>
+    <div id="heading" @click="sidebarStore.openCardEditingFunc();"
+        :class="`group flex flex-col relative p-0.5 rounded-md w-full cursor-pointer text-center m-0.5 ${sidebarContent.openCardEditing ? 'border border-pink-600' : 'border border-transparent hover:border-pink-600'}`">
+        <section name="CardContainer"
+            :class="`bg-gray-100 px-6 py-4 rounded-md w-full h-max grid ${mainContentWidth == contentStore.mobileWidth ? 'grid-cols-1' : 'grid-cols-3'} place-items-center`">
+            <Card />
+            <Card />
+            <Card />
+        </section>
+        <p
+            :class="` ${sidebarContent.openCardEditing ? 'visible' : 'invisible'} group-hover:visible text-[11px] px-0.5 rounded-br-sm rounded-t-[3px] text-white bg-pink-600 absolute -top-2 -left-[2px]`">
+            Cards</p>
+    </div>
+</template>

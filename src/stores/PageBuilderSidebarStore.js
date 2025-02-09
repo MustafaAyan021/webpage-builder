@@ -5,6 +5,7 @@ export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore',
             showAddItem: true,
             showStructure: false,
             openHeadingEditing: false,
+            openSubHeadingEditing:false,
             openImageEditing: false,
             openParagraphEditing: false,
             openCardEditing: false,
@@ -30,6 +31,10 @@ export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore',
             this.setAllToFalse()
             this.sidebarContent.openHeadingEditing = !this.sidebarContent.openHeadingEditing
         },
+        openSubHeadingEditingFunc() {
+            this.setAllToFalse()
+            this.sidebarContent.openSubHeadingEditing = !this.sidebarContent.openSubHeadingEditing
+        },
 
         openParagraphEditingFunc() {
             this.setAllToFalse()
@@ -48,3 +53,4 @@ export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore',
     },
     getters: {},
 })
+

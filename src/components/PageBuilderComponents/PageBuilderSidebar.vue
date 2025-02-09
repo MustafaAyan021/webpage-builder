@@ -44,10 +44,13 @@ const handelItemSubmit = (e) => {
 
 <template>
     <aside
-        :class="`${currentTheme.backgroundPrimary} absolute top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto border-l ${currentTheme.borderColor}`">
+        :class="`${currentTheme.backgroundPrimary} absolute z-10 top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto border-l ${currentTheme.borderColor}`">
         <h1 :class="`${currentTheme.text} font-bold text-lg ml-1`">Edit Page</h1>
         <div v-show="sidebarContent.openHeadingEditing" id="heading-editing">
             <Input type="text" label="Heading" />
+        </div>
+        <div v-show="sidebarContent.openSubHeadingEditing" id="heading-editing">
+            <Input type="text" label    ="Sub Heading" />
         </div>
         <div id="image-editing" v-show="sidebarContent.openImageEditing">
             <Input :atChange="handelImageSubmit" type="file" :fileName="imageName" label="Choose Image" accept="image/*"

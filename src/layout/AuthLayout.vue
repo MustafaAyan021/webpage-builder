@@ -53,7 +53,7 @@ const toggleSidebar = () => {
   <main class="flex h-screen selection:text-gray-700 selection:bg-gray-200">
     <!-- Sidebar -->
     <aside
-      :class="`${sidebarState ? 'w-56 absolute left-0 top-0' : 'left-0 w-20'} ${currentTheme.backgroundPrimary} absolute  flex flex-col h-full px-4 py-2 gap-8 transition-all duration-200 ease-out`">
+      :class="`${sidebarState ? 'w-56 absolute left-0 top-0' : 'left-0 w-20'} ${currentTheme.backgroundPrimary} z-10 absolute  flex flex-col h-full px-4 py-2 gap-8 transition-all duration-200 ease-out`">
       <div class="flex items-center">
         <button>
           <Bars3Icon @click="toggleSidebar()"
