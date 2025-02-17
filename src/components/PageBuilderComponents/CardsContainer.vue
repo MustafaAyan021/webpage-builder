@@ -15,7 +15,7 @@ const { sidebarContent } = storeToRefs(sidebarStore)
     <div id="heading" @click="sidebarStore.openCardEditingFunc();"
         :class="`group flex flex-col relative p-0.5 rounded-md w-full cursor-pointer text-center m-0.5 ${sidebarContent.openCardEditing ? 'border border-pink-600' : 'border border-transparent hover:border-pink-600'}`">
         <section name="CardContainer"
-            :class="`bg-gray-100 px-6 py-4 rounded-md w-full h-max grid ${mainContentWidth == contentStore.mobileWidth ? 'grid-cols-1' : 'grid-cols-3'} place-items-center`">
+            :class="`bg-gray-100 px-6 py-4 rounded-md w-full h-max grid gap-2  ${mainContentWidth == contentStore.mobileWidth ? 'grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3'} place-items-center`">
             <Card />
             <Card />
             <Card />

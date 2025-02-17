@@ -2,7 +2,7 @@
 import Button from '@/components/button/Button.vue';
 import DevicePhoneMobileIcon from '@heroicons/vue/24/outline/DevicePhoneMobileIcon';
 import ComputerDesktopIcon from '@heroicons/vue/24/outline/ComputerDesktopIcon';
-import { IconArrowsMaximize } from '@tabler/icons-vue';
+import { IconArrowLeft, IconArrowsMaximize } from '@tabler/icons-vue';
 import { IconX } from '@tabler/icons-vue';
 import { useThemeStore } from '@/stores/ThemeSettings';
 import { storeToRefs } from 'pinia';
@@ -13,14 +13,19 @@ import Paragraph from '@/components/PageBuilderComponents/Paragraph.vue';
 import SubHeading from './PageBuilderComponents/SubHeading.vue';
 import Image from './PageBuilderComponents/Image.vue';
 import Header from './PageBuilderComponents/Header.vue';
+import Footer from './PageBuilderComponents/Footer.vue';
 import CardsContainer from './PageBuilderComponents/CardsContainer.vue';
 import { usePageBuilderContent } from '@/stores/PageBuilderContent';
+import draggableComponent from 'vuedraggable';
+import draggable from 'vuedraggable'
+import HeadingSettings from './PageBuilderSidebarComponents/HeadingSettings.vue';
 
 const themeStore = useThemeStore()
 const { currentTheme } = storeToRefs(themeStore)
 
 const contentStore = usePageBuilderContent()
 const { mainContentWidth } = storeToRefs(contentStore)
+const { mainContent } = storeToRefs(contentStore)
 const state = reactive({
     heading: '',
     paragraph: '',
@@ -63,20 +68,22 @@ const closeFullScreen = () => {
     <div @click="sidebarStore.showStructureFunc()" class="absolute left-0 top-0 w-full h-screen bg-transparent"></div>
     <main
         :class="`${mainContentWidth} shadow border border-gray-200 h-[100%] bg-gray-50 rounded-[16px] flex flex-col transition-all overflow-scroll overflow-x-hidden items-center`">
-        <i :class="`${state.openMainContent ? 'inline-block' : 'hidden'} z-10 absolute top-0 right-0 p-4 bg-gray-300 hover:bg-red-500 rounded-full aspect-[1/1] flex items-center m-2 ${currentTheme.text} active:scale-95 active:opacity-70`"
-            @click="closeFullScreen">
-            <IconX stroke='3' size="24" />
+        <i
+            :class="`${state.openMainContent ? 'inline-block' : 'hidden'} z-10 p-4 bg-gray-50 border-b h-10 w-full flex items-center ${currentTheme.text}`">
+            <Button @click="closeFullScreen" classes="text-xs bg-transparent -translate-x-2 active:-translate-x-1"
+                :append-icon="IconArrowLeft" icon-size="size-6" variant="">
+            </Button>
         </i>
-        <Header />
-        <main :class="`container py-4 ${mainContentWidth == contentStore.mobileWidth ? 'px-8' : 'px-8 md:px-24'}`">
-            <Heading />
-            <SubHeading />
-            <Image />
-            <Paragraph />
-            <CardsContainer />
+        <main
+            :class="`container py-4 ${mainContentWidth == contentStore.mobileWidth ? 'px-6' : 'px-8 md:px-24 relative'}`">
+            <component v-for="element in mainContent" :is="element.mainComponent"></component>
+            <!-- <draggable 
+            v-model="mainContent" ghost-class="ghost" item-key="id" tag="transition-group" :component-data="{ name: 'fade' }">
+                <template #item="{ element }">
+                    <component :is="element.mainComponent"></component>
+                </template>
+            </draggable> -->
         </main>
-        <div class="text-center p-3 w-full text-black mt-2 border-t border-gray-300">
-            © 20205 Copyright: vue-assigment.com
-        </div>
+
     </main>
 </template>

@@ -64,8 +64,8 @@ const toggleSidebar = () => {
         <div class="flex flex-col gap-1">
           <button v-for="link in links" @click="navigateTo(link.path)" :key="link"
             :class="`
-              ${IsActiveLink(link.path) ? currentTheme.activeButton : currentTheme.button} 
-              ${currentTheme.text} ${currentTheme.hover} active:opacity-70 active:scale-[99%] w-full p-2 text-center rounded-md cursor-pointer text-sm`">
+              ${IsActiveLink(link.path) ? `${currentTheme.activeButton} shadow-sm` : currentTheme.button} 
+              ${currentTheme.text} ${currentTheme.hover} active:opacity-70 active:scale-[99%] w-full p-2 text-center rounded-md cursor-pointer text-sm font-medium`">
             <div :class="`${sidebarState ? 'flex gap-4 items-center' : 'flex justify-center'}`">
               <component :is="link.icon" :class="`size-5`" />
               <p v-show="sidebarState" class='text-md'>{{ link.name }}</p>

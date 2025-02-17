@@ -4,6 +4,8 @@ export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore',
         sidebarContent: {
             showAddItem: true,
             showStructure: false,
+            openHeaderEditing:false,
+            openFooterEditing:false,
             openHeadingEditing: false,
             openSubHeadingEditing:false,
             openImageEditing: false,
@@ -18,37 +20,45 @@ export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore',
             });
         },
         showAddItemFunc() {
-            this.setAllToFalse()
-            this.sidebarContent.showAddItem = !this.sidebarContent.showAddItem
+            this.setAllToFalse(); 
+            this.sidebarContent.showAddItem = !this.sidebarContent.showAddItem; 
         },
 
         showStructureFunc() {
-            this.setAllToFalse()
-            this.sidebarContent.showStructure = !this.sidebarContent.showStructure
+            this.setAllToFalse(); 
+            this.sidebarContent.showStructure = !this.sidebarContent.showStructure; 
         },
 
         openHeadingEditingFunc() {
-            this.setAllToFalse()
-            this.sidebarContent.openHeadingEditing = !this.sidebarContent.openHeadingEditing
+            this.setAllToFalse(); 
+            this.sidebarContent.openHeadingEditing = !this.sidebarContent.openHeadingEditing; 
         },
         openSubHeadingEditingFunc() {
-            this.setAllToFalse()
-            this.sidebarContent.openSubHeadingEditing = !this.sidebarContent.openSubHeadingEditing
+            this.setAllToFalse(); 
+            this.sidebarContent.openSubHeadingEditing = !this.sidebarContent.openSubHeadingEditing; 
         },
 
         openParagraphEditingFunc() {
-            this.setAllToFalse()
-            this.sidebarContent.openParagraphEditing = !this.sidebarContent.openParagraphEditing
+            this.setAllToFalse();
+            this.sidebarContent.openParagraphEditing = !this.sidebarContent.openParagraphEditing;     
         },
 
         openImageEditingFunc() {
-            this.setAllToFalse()
-            this.sidebarContent.openImageEditing = !this.sidebarContent.openImageEditing
+            this.setAllToFalse();
+            this.sidebarContent.openImageEditing = !this.sidebarContent.openImageEditing;
         },
 
         openCardEditingFunc() {
-            this.setAllToFalse()
-            this.sidebarContent.openCardEditing = !this.sidebarContent.openCardEditing
+            this.setAllToFalse();
+            this.sidebarContent.openCardEditing = !this.sidebarContent.openCardEditing;
+        },
+        openHeaderEditingFunc() {
+            this.setAllToFalse();
+            this.sidebarContent.openHeaderEditing = !this.sidebarContent.openHeaderEditing;
+        },
+        openFooterEditingFunc() {
+            this.setAllToFalse();
+            this.sidebarContent.openFooterEditing = !this.sidebarContent.openFooterEditing;
         },
     },
     getters: {},
