@@ -1,17 +1,24 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import Button from '../button/Button.vue';
 import Input from '../input/input.vue';
 import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
-import { ref } from 'vue';
+import { computed } from 'vue';
 
-const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
+const sidebarStore = usePageBuilderSidebarStore();
+const { sidebarContent } = storeToRefs(sidebarStore);
 
-
+const subHeading = computed({
+    get: () => sidebarContent.value.selectedComponent?.subHeading || '',
+    set: (newValue) => {
+        if (sidebarContent.value.selectedComponent) {
+            sidebarContent.value.selectedComponent.subHeading = newValue;
+        }
+    }
+});
 </script>
 
 <template>
-    <div v-show="sidebarContent.openSubHeadingEditing" id="heading-editing">
-        <Input type="text" label="Sub Heading" />
+    <div v-show="sidebarContent.openSubHeadingEditing">
+        <Input v-model="subHeading" type="text" label="Sub Heading" />
     </div>
 </template>

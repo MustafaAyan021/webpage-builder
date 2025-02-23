@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore', {
     state: () => ({
         sidebarContent: {
+            selectedComponent:{},
             showAddItem: true,
             showStructure: false,
             openHeaderEditing:false,

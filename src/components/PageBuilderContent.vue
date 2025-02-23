@@ -32,8 +32,7 @@ const state = reactive({
     openMainContent: false,
 })
 const sidebarStore = usePageBuilderSidebarStore()
-const { sidebarContent } = storeToRefs(sidebarStore)
-
+const { sidebarContent, selectedComponent } = storeToRefs(sidebarStore)
 
 const responsiveButtons = [
     {
@@ -57,6 +56,12 @@ const closeFullScreen = () => {
     contentStore.setToDesktopWidth()
     state.openMainContent = false
 }
+const activeBorder = (element) => {
+    mainContent.value.forEach(e => e.border = false);
+    element.border = true;
+    sidebarStore.sidebarContent.selectedComponent = element;
+};
+
 </script>
 <template>
     <div
@@ -65,7 +70,8 @@ const closeFullScreen = () => {
             :classes="`${currentTheme.backgroundPrimary} hover:opacity-100 opacity-90 active:scale-95 text-sm rounded-md`"
             :append-icon="btn.icon"></Button>
     </div>
-    <div @click="sidebarStore.showStructureFunc()" class="absolute left-0 top-0 w-full h-screen bg-transparent"></div>
+    <div @click="sidebarStore.showStructureFunc(), mainContent.forEach(e => e.border = false)"
+        class="absolute left-0 top-0 w-full h-screen bg-transparent"></div>
     <main
         :class="`${mainContentWidth} shadow border border-gray-200 h-[100%] bg-gray-50 rounded-[16px] flex flex-col transition-all overflow-scroll overflow-x-hidden items-center`">
         <i
@@ -76,13 +82,18 @@ const closeFullScreen = () => {
         </i>
         <main
             :class="`container py-4 ${mainContentWidth == contentStore.mobileWidth ? 'px-6' : 'px-8 md:px-24 relative'}`">
-            <component v-for="element in mainContent" :is="element.mainComponent"></component>
-            <!-- <draggable 
-            v-model="mainContent" ghost-class="ghost" item-key="id" tag="transition-group" :component-data="{ name: 'fade' }">
+            <!-- <component v-for="element in mainContent" :is="element.mainComponent" :key="element.id"
+                :border="element.border" :heading="element.heading" :subHeading="element.subHeading" @click="activeBorder(element)">
+            </component> -->
+
+            <draggable v-model="mainContent" ghost-class="ghost" item-key="id"
+                :component-data="{ name: 'flip-list' }">
                 <template #item="{ element }">
-                    <component :is="element.mainComponent"></component>
+                    <component :is="element.mainComponent" :border="element.border" :heading="element.heading"
+                        :subHeading="element.subHeading" @click="activeBorder(element)">
+                    </component>
                 </template>
-            </draggable> -->
+            </draggable>
         </main>
 
     </main>

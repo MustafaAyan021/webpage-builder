@@ -11,42 +11,9 @@ import HeadingSettings from "@/components/PageBuilderSidebarComponents/HeadingSe
 import ImageSettings from "@/components/PageBuilderSidebarComponents/ImageSettings.vue";
 import SubHeadingSettings from "@/components/PageBuilderSidebarComponents/SubHeadingSettings.vue";
 import { defineStore } from "pinia";
-
 export const usePageBuilderContent = defineStore('PageBuilderContentStore', {
     state:() => ({
-       mainContent:[
-        // {
-        //     name:'Header',
-        //     mainComponent:Header,
-        //     settingsComponent:HeaderSettings,
-        // },
-        // {
-        //     name:'Heading',
-        //     mainComponent:Heading,
-        //     settingsComponent:HeadingSettings,
-        // },
-        // {
-        //     name:'Sub Heading',
-        //     mainComponent:SubHeading,
-        //     settingsComponent:SubHeadingSettings,
-        // },
-        // {
-        //     name:'Image',
-        //     mainComponent:Image,
-        //     settingsComponent:ImageSettings,
-        // },
-        // {
-        //     name:'Cards',
-        //     mainComponent:CardsContainer,
-        //     settingsComponent:CardSettings,
-        // },
-        // {
-        //     name:'Footer',
-        //     mainComponent:Footer,
-        //     settingsComponent:FooterSettings,
-        // },
-        //Content
-       ],
+       mainContent:[],
        mainContentWidth:'container',
        mobileWidth:'w-[400px]',
        fullScreenStyles:'absolute top-0 left-0 w-full h-[100%] rounded-none z-50 transition-none'

@@ -18,51 +18,73 @@ import HeaderSettings from "@/components/PageBuilderSidebarComponents/HeaderSett
 import HeadingSettings from "@/components/PageBuilderSidebarComponents/HeadingSettings.vue";
 import ImageSettings from "@/components/PageBuilderSidebarComponents/ImageSettings.vue";
 import SubHeadingSettings from "@/components/PageBuilderSidebarComponents/SubHeadingSettings.vue";
-
+import { IconPlus } from '@tabler/icons-vue';
+import { useThemeStore } from '@/stores/ThemeSettings';
+import { v4 as uuidv4 } from 'uuid';
+const { currentTheme } = storeToRefs(useThemeStore())
 const sidebarStore = usePageBuilderSidebarStore()
 const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
 const contentStore = usePageBuilderContent()
 const { mainContent } = storeToRefs(contentStore)
+const { selectedComponent } = storeToRefs(contentStore)
 const content = [
-        {
-            name:'Header',
-            mainComponent:Header,
-            settingsComponent:HeaderSettings,
-        },
-        {
-            name:'Heading',
-            mainComponent:Heading,
-            settingsComponent:HeadingSettings,
-        },
-        {
-            name:'Sub Heading',
-            mainComponent:SubHeading,
-            settingsComponent:SubHeadingSettings,
-        },
-        {
-            name:'Image',
-            mainComponent:Image,
-            settingsComponent:ImageSettings,
-        },
-        {
-            name:'Cards',
-            mainComponent:CardsContainer,
-            settingsComponent:CardSettings,
-        },
-        {
-            name:'Footer',
-            mainComponent:Footer,
-            settingsComponent:FooterSettings,
-        },
-       ]
+    {
+        id:Number,
+        name: 'Header',
+        mainComponent: Header,
+        logoSrc:String,
+        border:false,
+    },
+    {
+        id:Number,
+        name: 'Heading',
+        mainComponent: Heading,
+        heading:'Heading Here...',
+        border:false,
+    },
+    {
+        id:Number,
+        name: 'Sub Heading',
+        mainComponent: SubHeading,
+        subHeading:'This is a sub heading place holder',
+        border:false,
+    },
+    {
+        id:Number,
+        name: 'Image',
+        mainComponent: Image,
+        ImageSrc:'https://png.pngtree.com/illustration/20190226/ourmid/pngtree-illustration-landscape-city-building-city-png_4279.jpg',
+        border:false,
+    },
+    {
+        id:Number,
+        name: 'Cards',
+        mainComponent: CardsContainer,
+        cardHeading:String,
+        border:false,
+    },
+    {
+        id:Number,
+        name: 'Footer',
+        mainComponent: Footer,
+        footerText:String,
+        border:false,
+    },
+]
 </script>
 
 <template>
     <div v-show="sidebarContent.showAddItem">
-       <div v-for="(e, index) in content" class="flex flex-col">
-        <Button variant="outline" @click="mainContent.splice(index , 0 , e)" classes="py-1 mt-1">
-           {{ e.name }}
-        </Button>
-       </div>
+        <h1 :class="`font-semibold text-xl mb-6 ${currentTheme.text}`">Add Component</h1>
+        <div v-for="(e, index) in content" class="flex flex-col">
+            <Button variant="outline" @click="mainContent.splice(index, 0, {...e, id:uuidv4()})" classes="py-1 mt-1">
+                <div class=" w-full flex justify-between items-center">
+                    <p class="text-sm font-normal">{{ e.name }}</p>
+                    <i class="bg-gray-50 w-max h-max aspect-square rounded-full p-1">
+                        <IconPlus class="text-black" size="20" stroke="2" />
+                    </i>
+                </div>
+            </Button>
+        </div>
     </div>
 </template>

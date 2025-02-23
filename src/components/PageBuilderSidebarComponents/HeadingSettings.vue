@@ -1,17 +1,24 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import Button from '../button/Button.vue';
 import Input from '../input/input.vue';
 import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
-import { ref } from 'vue';
+import { computed } from 'vue';
 
-const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
+const sidebarStore = usePageBuilderSidebarStore();
+const { sidebarContent } = storeToRefs(sidebarStore);
 
-
+const heading = computed({
+    get: () => sidebarContent.value.selectedComponent?.heading || '',
+    set: (newValue) => {
+        if (sidebarContent.value.selectedComponent) {
+            sidebarContent.value.selectedComponent.heading = newValue;
+        }
+    }
+});
 </script>
 
 <template>
-    <div v-show="sidebarContent.openHeadingEditing" id="heading-editing">
-        <Input type="text" label="Heading" />
+    <div v-show="sidebarContent.openHeadingEditing">
+        <Input v-model="heading" type="text" label="Heading" />
     </div>
 </template>

@@ -14,17 +14,19 @@ import AddComponents from '../PageBuilderSidebarComponents/AddComponents.vue';
 import Structure from '../PageBuilderSidebarComponents/Structure.vue';
 import { IconArrowLeft } from '@tabler/icons-vue';
 import { IconCategoryPlus } from '@tabler/icons-vue';
+import { usePageBuilderContent } from '@/stores/PageBuilderContent';
 
 const themeStore = useThemeStore()
 const { currentTheme } = storeToRefs(themeStore)
 const sidebarStore = usePageBuilderSidebarStore()
 const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
-
+const contentStore = usePageBuilderContent()
+const { mainContent } = storeToRefs(contentStore)
 </script>
 
 <template>
     <aside
-        :class="`${currentTheme.backgroundPrimary} absolute z-10 top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto border-l ${currentTheme.borderColor}`">
+        :class="`${currentTheme.backgroundPrimary} absolute z-10 top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto ${currentTheme.borderColor}`">
         <div :class="`flex justify-between w-full items-center`">
             <Button classes="text-xs bg-transparent -translate-x-2 active:-translate-x-1" variant="" @click="sidebarStore.showStructureFunc">
                 <IconArrowLeft stroke="1" size="30" />
@@ -33,12 +35,10 @@ const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
         </div>
         <AddComponents />
         <Structure />
-        <HeaderSettings />
-        <HeadingSettings />
-        <SubHeadingSettings />
-        <ImageSettings />
-        <ParagraphSettings />
-        <CardSettings />
-        <FooterSettings />
+        <HeaderSettings/>
+        <HeadingSettings/>
+        <SubHeadingSettings/>
+        <ImageSettings/>
+        <CardSettings/>
     </aside>
 </template>
