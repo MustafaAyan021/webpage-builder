@@ -40,5 +40,6 @@ const { mainContent } = storeToRefs(contentStore)
         <SubHeadingSettings/>
         <ImageSettings/>
         <CardSettings/>
+        <FooterSettings/>
     </aside>
 </template>

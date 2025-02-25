@@ -88,9 +88,9 @@ const activeBorder = (element) => {
 
             <draggable v-model="mainContent" ghost-class="ghost" item-key="id"
                 :component-data="{ name: 'flip-list' }">
-                <template #item="{ element }">
+                <template #item="{ element , index }">
                     <component :is="element.mainComponent" :border="element.border" :heading="element.heading"
-                        :subHeading="element.subHeading" @click="activeBorder(element)">
+                        :subHeading="element.subHeading" :ImageSrc="element.ImageSrc" @click="activeBorder(element)">
                     </component>
                 </template>
             </draggable>

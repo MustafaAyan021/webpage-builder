@@ -6,6 +6,7 @@ import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
 import { ref } from 'vue';
 
 const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
+const { selectedComponent } = storeToRefs(usePageBuilderSidebarStore())
 
 const image = ref('')
 const imageName = ref('')

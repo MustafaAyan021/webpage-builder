@@ -34,6 +34,7 @@ const content = [
         mainComponent: Header,
         logoSrc:String,
         border:false,
+        displayOrder:Number,
     },
     {
         id:Number,
@@ -41,6 +42,7 @@ const content = [
         mainComponent: Heading,
         heading:'Heading Here...',
         border:false,
+        displayOrder:Number,
     },
     {
         id:Number,
@@ -48,6 +50,7 @@ const content = [
         mainComponent: SubHeading,
         subHeading:'This is a sub heading place holder',
         border:false,
+        displayOrder:Number,
     },
     {
         id:Number,
@@ -55,6 +58,7 @@ const content = [
         mainComponent: Image,
         ImageSrc:'https://png.pngtree.com/illustration/20190226/ourmid/pngtree-illustration-landscape-city-building-city-png_4279.jpg',
         border:false,
+        displayOrder:Number,
     },
     {
         id:Number,
@@ -62,6 +66,7 @@ const content = [
         mainComponent: CardsContainer,
         cardHeading:String,
         border:false,
+        displayOrder:Number,
     },
     {
         id:Number,
@@ -69,6 +74,7 @@ const content = [
         mainComponent: Footer,
         footerText:String,
         border:false,
+        displayOrder:Number,
     },
 ]
 </script>
