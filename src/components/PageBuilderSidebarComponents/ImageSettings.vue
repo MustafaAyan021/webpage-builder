@@ -3,16 +3,32 @@ import { storeToRefs } from 'pinia';
 import Button from '../button/Button.vue';
 import Input from '../input/input.vue';
 import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
-import { ref } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 
 const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
-const { selectedComponent } = storeToRefs(usePageBuilderSidebarStore())
 
-const image = ref('')
-const imageName = ref('')
+let imageSrc = computed({
+    get: () => sidebarContent.value.selectedComponent?.ImageSrc || '',
+    set: (newValue) => {
+        if (sidebarContent.value.selectedComponent?.ImageSrc) {
+            sidebarContent.value.selectedComponent.ImageSrc = newValue
+        }
+    }
+})
+
+let imageName = computed({
+    get: () => sidebarContent.value.selectedComponent?.ImageName || '',
+    set: (newValue) => {
+        if (sidebarContent.value.selectedComponent) {
+            sidebarContent.value.selectedComponent.ImageName = newValue;
+        }
+    }
+});
+
+
 const handelImageSubmit = (e) => {
     const file = e.target.files[0]
-    image.value = file ? URL.createObjectURL(file) : '';
+    imageSrc.value = file ? URL.createObjectURL(file) : '';
     imageName.value = file.name;
 }
 
