@@ -6,11 +6,26 @@ import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
 import { IconChevronDown } from '@tabler/icons-vue';
 import { useThemeStore } from '@/stores/ThemeSettings';
 import { reactive, ref } from 'vue';
+import { computed } from 'vue';
 const { currentTheme } = storeToRefs(useThemeStore())
 const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
 
-const image = ref('')
-const HeaderLogo = ref('')
+const headerLogo = computed({
+      get:() => sidebarContent.value.selectedComponent?.HeaderLogo || '',
+      set:(newValue) => {
+         if(sidebarContent.value.selectedComponent?.HeaderLogo){
+              sidebarContent.value.selectedComponent.HeaderLogo = newValue
+         }
+      }
+})
+const imageName = computed({
+      get:() => sidebarContent.selectedComponent?.ImageName || '',
+      set:(newValue) => {
+        if(sidebarContent.value.selectedComponent?.ImageName){
+            sidebarContent.value.selectedComponent.ImageName = newValue
+        }
+      }
+})
 const handelImageSubmit = (e) => {
     const file = e.target.files[0]
     image.value = file ? URL.createObjectURL(file) : '';
