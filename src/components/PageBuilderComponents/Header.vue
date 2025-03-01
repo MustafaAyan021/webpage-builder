@@ -8,6 +8,9 @@ let props = defineProps({
     border:{
         type:Boolean,
         default:false,
+    },
+    HeaderLogo:{
+        type:String,
     }
 })
 </script>
@@ -17,7 +20,7 @@ let props = defineProps({
         :class="`group flex flex-col relative p-0.5 rounded-md w-full cursor-pointer text-center mb-5 ${props.border ? 'border border-pink-600' : 'border border-transparent hover:border-pink-600'}`">
         <header
             class=" w-full p-2 px-8 flex justify-between items-center bg-gray-50 text-black border rounded-lg border-gray-300">
-            <h1 class="font-bold">Logo</h1>
+            <img :src="HeaderLogo" class="w-10 rounded-full">
             <Button variant="outline" classes="px-2 py-1">Button</Button>
         </header>
         <p

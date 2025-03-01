@@ -90,7 +90,7 @@ const activeBorder = (element) => {
                 :component-data="{ name: 'flip-list' }">
                 <template #item="{ element , index }">
                     <component :is="element.mainComponent" :border="element.border" :heading="element.heading"
-                        :subHeading="element.subHeading" :ImageSrc="element.ImageSrc" @click="activeBorder(element)">
+                        :subHeading="element.subHeading" :ImageSrc="element.ImageSrc" :HeaderLogo="element.HeaderLogo" @click="activeBorder(element)">
                     </component>
                 </template>
             </draggable>

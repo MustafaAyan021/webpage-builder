@@ -24,10 +24,10 @@ const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
     <draggable v-model="mainContent" item-key="id" class="flex flex-col gap-1">
       <template #item="{ element , index }">
         <div
-          :class="`w-full py-1 px-2 text-center rounded-md ${currentTheme.text} border cursor-pointer ${currentTheme.borderColor}`">
+          :class="`group w-full py-1 px-2 text-center rounded-md ${currentTheme.text} border cursor-pointer ${currentTheme.borderColor}`">
           <div class="flex justify-between items-center">
             <h1 class="text-sm">{{ element.name }}</h1>
-            <i @click="mainContent.splice(index , 1)"><IconTrash/></i>
+            <i @click="mainContent.splice(index , 1)" class="invisible group-hover:visible"><IconTrash/></i>
           </div>
         </div>
       </template>

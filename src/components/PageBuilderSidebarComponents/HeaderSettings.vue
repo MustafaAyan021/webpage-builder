@@ -10,26 +10,26 @@ import { computed } from 'vue';
 const { currentTheme } = storeToRefs(useThemeStore())
 const { sidebarContent } = storeToRefs(usePageBuilderSidebarStore())
 
-const headerLogo = computed({
+let headerLogo = computed({
       get:() => sidebarContent.value.selectedComponent?.HeaderLogo || '',
       set:(newValue) => {
-         if(sidebarContent.value.selectedComponent?.HeaderLogo){
+         if(sidebarContent.value.selectedComponent){
               sidebarContent.value.selectedComponent.HeaderLogo = newValue
          }
       }
 })
-const imageName = computed({
-      get:() => sidebarContent.selectedComponent?.ImageName || '',
+let logoName = computed({
+      get:() => sidebarContent.value.selectedComponent?.LogoName || '',
       set:(newValue) => {
-        if(sidebarContent.value.selectedComponent?.ImageName){
-            sidebarContent.value.selectedComponent.ImageName = newValue
+        if(sidebarContent.value.selectedComponent){
+            sidebarContent.value.selectedComponent.LogoName = newValue;
         }
       }
 })
 const handelImageSubmit = (e) => {
     const file = e.target.files[0]
-    image.value = file ? URL.createObjectURL(file) : '';
-    HeaderLogo.value = file.name;
+    logoName.value = file.name;
+    headerLogo.value = file ? URL.createObjectURL(file) : '';
 }
 const themeColorButtonStatus = ref(false)
 const toggleColorThemeButton = () => {
@@ -54,7 +54,7 @@ const headerColorThemes = reactive([
         <h1 :class="`font-semibold text-xl mb-2 ${currentTheme.text}`">Header Settings</h1>
         <div>
             <Input type="file" label="Choose Header Logo" :atChange="handelImageSubmit" accept="image/*"
-                :fileName="HeaderLogo" />
+                :fileName="logoName" />
         </div>
         <div :class="`w-full flex flex-col gap-2 border-b transition-all ${currentTheme.borderColor} p-2`">
             <button @click="toggleColorThemeButton" :class="`w-full flex items-center justify-between`">

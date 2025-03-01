@@ -7,7 +7,7 @@ const { sidebarContent } = storeToRefs(sidebarStore)
 
 <template>
     <div name="card" class="max-w-72 flex flex-col rounded-lg bg-gray-200 text-black">
-        <img src="https://media.istockphoto.com/id/923079848/photo/online-shopping.jpg?s=612x612&w=0&k=20&c=74cW4LDlcWRKlMMs49RKg2_-9lsCetPni4fhKjW7RhQ="
+        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
             alt="" class="object-cover w-full rounded-t-lg">
         <div class="px-6 py-3 text-left">
             <h1>Heading Here</h1>
