@@ -32,7 +32,7 @@ const content = [
         id:Number,
         name: 'Header',
         mainComponent: Header,
-        HeaderLogo:'https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png',
+        HeaderLogo:'https://www.svgrepo.com/show/508699/landscape-placeholder.svg',
         LogoName:'',
         border:false,
         displayOrder:Number,
@@ -65,6 +65,7 @@ const content = [
     {
         id:Number,
         name: 'Cards',
+        childrenCards:[],
         mainComponent: CardsContainer,
         cardHeading:String,
         border:false,
