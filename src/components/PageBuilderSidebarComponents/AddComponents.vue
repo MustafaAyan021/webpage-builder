@@ -65,9 +65,13 @@ const content = [
     {
         id:Number,
         name: 'Cards',
-        childrenCards:[],
+        childrenCards:[{
+            id:uuidv4(),
+            heading:'Heading Here',
+            paragraph:'This is a placeholder text use for paragraph due to a development purpose',
+            image:'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+        }],
         mainComponent: CardsContainer,
-        cardHeading:String,
         border:false,
         displayOrder:Number,
     },

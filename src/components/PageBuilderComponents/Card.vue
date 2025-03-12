@@ -1,19 +1,23 @@
 <script setup>
 import { usePageBuilderSidebarStore } from '@/stores/PageBuilderSidebarStore';
 import { storeToRefs } from 'pinia';
+import Paragraph from './Paragraph.vue';
 const sidebarStore = usePageBuilderSidebarStore()
 const { sidebarContent } = storeToRefs(sidebarStore)
+defineProps({
+    heading:String,
+    paragraph:String,
+    imageSrc:String,
+})
 </script>
 
 <template>
-    <div name="card" class="max-w-72 flex flex-col rounded-lg bg-gray-200 text-black">
-        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-            alt="" class="object-cover w-full rounded-t-lg">
+    <div name="card" class="w-64 flex flex-col rounded-lg bg-gray-200 text-black">
+        <img :src="imageSrc"
+            alt="" class="object-cover rounded-t-lg w-full aspect-square">
         <div class="px-6 py-3 text-left">
-            <h1>Heading Here</h1>
-            <p class="text-sm text-wrap break-word text-gray-600">This is a placeholder text use for paragraph due
-                to a development
-                purpose</p>
+            <h1>{{ heading }}</h1>
+            <p class="text-sm text-wrap break-word text-gray-600">{{ paragraph }}</p>
         </div>
     </div>
 </template>

@@ -49,7 +49,7 @@ export const usePageBuilderSidebarStore = defineStore('PageBuilderSidebarStore',
             this.sidebarContent.openImageEditing = !this.sidebarContent.openImageEditing;
         },
 
-        openCardEditingFunc() {
+         openCardEditingFunc() {
             this.setAllToFalse();
             this.sidebarContent.openCardEditing = !this.sidebarContent.openCardEditing;
         },
