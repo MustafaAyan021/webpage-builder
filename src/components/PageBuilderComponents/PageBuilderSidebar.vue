@@ -28,18 +28,23 @@ const { mainContent } = storeToRefs(contentStore)
     <aside
         :class="`${currentTheme.backgroundPrimary} absolute z-10 top-0 right-0 w-80 h-full py-3 px-4 flex flex-col gap-3 overflow-auto ${currentTheme.borderColor}`">
         <div :class="`flex justify-between w-full items-center`">
-            <Button classes="text-xs bg-transparent -translate-x-2 active:-translate-x-1" variant="" @click="sidebarStore.showStructureFunc">
+            <Button classes="text-xs bg-transparent -translate-x-2 active:-translate-x-1" variant=""
+                @click="sidebarStore.showStructureFunc">
                 <IconArrowLeft stroke="1" size="30" />
             </Button>
-            <Button classes="text-sm h-10" variant="outline" @click="sidebarStore.showAddItemFunc"><IconCategoryPlus stroke="1"/></Button>
+            <Button classes="text-sm h-10" variant="outline" @click="sidebarStore.showAddItemFunc">
+                <IconCategoryPlus stroke="1" />
+            </Button>
         </div>
-        <AddComponents />
-        <Structure />
-        <HeaderSettings/>
-        <HeadingSettings/>
-        <SubHeadingSettings/>
-        <ImageSettings/>
-        <CardSettings/>
-        <FooterSettings/>
+        <main>
+            <AddComponents />
+            <Structure />
+            <HeaderSettings />
+            <HeadingSettings />
+            <SubHeadingSettings />
+            <ImageSettings />
+            <CardSettings />
+            <FooterSettings />
+        </main>
     </aside>
 </template>
