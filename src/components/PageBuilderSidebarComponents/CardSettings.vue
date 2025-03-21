@@ -89,9 +89,9 @@ const handleItemSubmit = (e) => {
 <template>
     <div id="card-editing" v-show="sidebarContent.openCardEditing">
         <div
-            :class="`${isActiveEditForm ? 'visible' : 'invisible'} absolute left-0 top-0 z-[20] w-full h-screen bg-black bg-opacity-15 flex items-center justify-center`">
+            :class="`${isActiveEditForm ? 'visible' : 'invisible'} fixed left-0 top-0 z-10 w-full h-screen bg-black bg-opacity-50 flex items-center justify-center`">
             <div
-                :class="`${currentTheme.backgroundSecondary} w-full m-2 h-max rounded-lg flex flex-col gap-1 p-3 shadow-md`">
+                :class="`${currentTheme.backgroundSecondary} w-1/4 m-2 h-max rounded-lg flex flex-col gap-1 p-3 shadow-md`">
                 <h1 :class="`${currentTheme.text} font-bold text-lg ml-1 mb-3`">Edit Card</h1>
                 <div>
                     <Input type="file" label="Choose Card Image" :atChange="handleImageToBeEditedSubmit"

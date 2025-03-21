@@ -65,7 +65,7 @@ const activeBorder = (element) => {
 </script>
 <template>
     <div
-        :class="`flex gap-1 p-1 ${currentTheme.activeButton} z-10 rounded-[12px] shadow-inner absolute top-2 right-[22rem]`">
+        :class="`flex gap-1 p-1 ${currentTheme.activeButton} z-[5] rounded-[12px] shadow-inner absolute top-2 right-[22rem]`">
         <Button v-for="btn in responsiveButtons" :key="btn.icon" @click="btn.buttonFunction()" variant="solid"
             :classes="`${currentTheme.backgroundPrimary} hover:opacity-100 opacity-90 active:scale-95 text-sm rounded-md`"
             :append-icon="btn.icon"></Button>
@@ -75,22 +75,19 @@ const activeBorder = (element) => {
     <main
         :class="`${mainContentWidth} shadow border border-gray-200 h-[100%] bg-gray-50 rounded-[16px] flex flex-col transition-all overflow-scroll overflow-x-hidden items-center`">
         <i
-            :class="`${state.openMainContent ? 'inline-block' : 'hidden'} z-10 p-4 bg-gray-50 border-b h-10 w-full flex items-center ${currentTheme.text}`">
+            :class="`${state.openMainContent ? 'inline-block' : 'hidden'} z-[5] p-4 bg-gray-50 border-b h-10 w-full flex items-center ${currentTheme.text}`">
             <Button @click="closeFullScreen" classes="text-xs bg-transparent -translate-x-2 active:-translate-x-1"
                 :append-icon="IconArrowLeft" icon-size="size-6" variant="">
             </Button>
         </i>
         <main
             :class="`container py-4 ${mainContentWidth == contentStore.mobileWidth ? 'px-6' : 'px-8 md:px-24 relative'}`">
-            <!-- <component v-for="element in mainContent" :is="element.mainComponent" :key="element.id"
-                :border="element.border" :heading="element.heading" :subHeading="element.subHeading" @click="activeBorder(element)">
-            </component> -->
-
-            <draggable v-model="mainContent" ghost-class="ghost" item-key="id"
-                :component-data="{ name: 'flip-list' }">
-                <template #item="{ element , index }">
-                    <component :is="element.mainComponent" :childrenCards="element.childrenCards" :border="element.border" :heading="element.heading"
-                        :subHeading="element.subHeading" :ImageSrc="element.ImageSrc" :HeaderLogo="element.HeaderLogo" @click="activeBorder(element) , console.log(sidebarContent.selectedComponent)">
+            <draggable v-model="mainContent" ghost-class="ghost" item-key="id" :component-data="{ name: 'flip-list' }">
+                <template #item="{ element, index }">
+                    <component :is="element.mainComponent" :childrenCards="element.childrenCards"
+                        :border="element.border" :heading="element.heading" :subHeading="element.subHeading"
+                        :ImageSrc="element.ImageSrc" :HeaderLogo="element.HeaderLogo"
+                        @click="activeBorder(element)">
                     </component>
                 </template>
             </draggable>
