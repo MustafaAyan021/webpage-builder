@@ -1,69 +1,68 @@
-🧱 Vue.js Web Page Builder
+# 🧱 Vue.js Web Page Builder
 
-A simple Web Page Builder built using Vue.js.
-This project was created as a practice project to explore and understand various concepts of Frontend Development — including component-based architecture, responsive design, and client-side authentication.
+A simple **Web Page Builder** built using **Vue.js**.  
+This project was created as a **practice project** to explore and understand various concepts of **Frontend Development** — including component-based architecture, responsive design, and client-side authentication.
 
-🚀 Overview
+---
 
-This project provides an interactive page builder that allows users to create and preview web pages in real time.
+## 🚀 Overview
+
+This project provides an **interactive page builder** that allows users to create and preview web pages in real time.  
 You can add various elements such as:
 
-🖼️ Images
+- 🖼️ **Images**
+- 🗂️ **Cards**
+- 📝 **Headings**
+- ➕ And more...
 
-🗂️ Cards
+It’s designed to simulate a real-world page builder, giving an opportunity to experiment with **UI composition**, **state management**, and **responsive design** using **Vue.js**.
 
-📝 Headings
+---
 
-➕ And more...
+## 🧩 Features
 
-It’s designed to simulate a real-world page builder, giving an opportunity to experiment with UI composition, state management, and responsive design using Vue.js.
+### 🔧 Page Builder
+- Add, edit, and arrange web page components.
+- Supports **images**, **cards**, **text blocks**, and more.
+- Built with reusability and modularity in mind.
 
-🧩 Features
-🔧 Page Builder
+### 📱 Responsive View Modes
+- Switch between **Mobile**, **Desktop**, and **Full View**.
+- Helps you test **responsiveness** of the page being built directly in the editor.
 
-Add, edit, and arrange web page components.
+### 🔒 Authentication System
+- Includes a **Login Page** and **Verification Page**.
+- Authentication handled **entirely on the frontend** using **Vue’s built-in Navigation Guards**.
+- Login uses **fixed password and verification code** (for demonstration only).
 
-Supports images, cards, text blocks, and more.
+---
 
-Built with reusability and modularity in mind.
-
-📱 Responsive View Modes
-
-Switch between Mobile, Desktop, and Full View.
-
-Helps you test responsiveness of the page being built directly in the editor.
-
-🔒 Authentication System
-
-Includes a Login Page and Verification Page.
-
-Authentication handled entirely on the frontend using Vue’s built-in Navigation Guards.
-
-Login uses fixed password and verification code (for demonstration only).
-
-🧠 What I Learned
+## 🧠 What I Learned
 
 Through building this project, I gained hands-on experience with:
+- Core **Vue.js concepts** (components, props, reactivity, and routing)
+- Implementing **Navigation Guards** for route protection
+- Designing and testing **responsive layouts**
+- Managing component communication and UI states
+- Structuring a small-scale Vue.js project
 
-Core Vue.js concepts (components, props, reactivity, and routing)
+---
 
-Implementing Navigation Guards for route protection
+## ⚙️ Tech Stack
 
-Designing and testing responsive layouts
+| Category | Technology |
+|-----------|-------------|
+| Framework | [Vue.js](https://vuejs.org/) |
+| Routing | Vue Router |
+| Styling | CSS / Tailwind (if used) |
+| Authentication | Vue Navigation Guards |
+| Build Tool | Vite / Vue CLI (depending on setup) |
 
-Managing component communication and UI states
+---
 
-Structuring a small-scale Vue.js project
+## 🧰 Project Setup
 
-⚙️ Tech Stack
-Category	Technology
-Framework	Vue.js
-
-Routing	Vue Router
-Styling	CSS / Tailwind (if used)
-Authentication	Vue Navigation Guards
-Build Tool	Vite / Vue CLI (depending on setup)
-🧰 Project Setup
+```bash
 # Install dependencies
 npm install
 
@@ -75,15 +74,3 @@ npm run dev
 
 # Build for production
 npm run build
-
-
-Then open your browser at http://localhost:8080/
- (or as shown in the console).
-
-🧾 Notes
-
-This is a practice project, not intended for production use.
-
-The authentication mechanism is purely frontend-based and uses hardcoded credentials for demo purposes.
-
-The goal of this project is to understand Vue.js fundamentals and frontend workflow, not backend security.
